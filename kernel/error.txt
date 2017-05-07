@@ -1,0 +1,28 @@
+Makefile:40: Makefile.dep: No such file or directory
+gcc -MM -nostdinc -g boot.S except.S syscall-asm.S x86_desc.S fs.c i8259.c idt.c kernel.c keyboard.c lib.c pcb.c pt.c rtc.c schedule.c syscall.c sys_execute.c sys_getargs.c sys_halt.c sys_vidmap.c terminal.c   > Makefile.dep
+make: Warning: File `Makefile.dep' has modification time 11 s in the future
+gcc  -nostdinc -g  -c -o boot.o boot.S
+gcc  -nostdinc -g  -c -o except.o except.S
+gcc  -nostdinc -g  -c -o syscall-asm.o syscall-asm.S
+gcc  -nostdinc -g  -c -o x86_desc.o x86_desc.S
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o fs.o fs.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o i8259.o i8259.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o idt.o idt.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o kernel.o kernel.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o keyboard.o keyboard.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o lib.o lib.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o pcb.o pcb.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o pt.o pt.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o rtc.o rtc.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o schedule.o schedule.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o syscall.o syscall.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o sys_execute.o sys_execute.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o sys_getargs.o sys_getargs.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o sys_halt.o sys_halt.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o sys_vidmap.o sys_vidmap.c
+gcc -Wall -fno-builtin -fno-stack-protector -nostdlib -nostdinc -g  -c -o terminal.o terminal.c
+rm -f bootimg
+gcc -nostdlib -static boot.o except.o syscall-asm.o x86_desc.o fs.o i8259.o idt.o kernel.o keyboard.o lib.o pcb.o pt.o rtc.o schedule.o syscall.o sys_execute.o sys_getargs.o sys_halt.o sys_vidmap.o terminal.o -Ttext=0x400000 -o bootimg
+sudo ./debug.sh
+cp: cannot remove `./mp3.img': Text file busy
+make: warning:  Clock skew detected.  Your build may be incomplete.
